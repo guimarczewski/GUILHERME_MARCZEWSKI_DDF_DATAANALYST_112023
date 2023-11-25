@@ -22,7 +22,7 @@ def calculate_similarity(text1, text2):
 
 # Função principal do aplicativo
 def main():
-    st.title("Comparador de Produtos")
+    st.title("Similaridade de Produtos")
 
     # URL do arquivo CSV no seu repositório do GitHub
     file_url = "streamlit/product-search-corpus-final.csv"
@@ -48,7 +48,9 @@ def main():
     st.subheader("Produto 2:")
     st.write(product2_data)
 
-    # Calcular e exibir a similaridade entre os textos dos produtos
+    # Calcular e exibir a similaridade entre os textos dos produtos sem as chaves e aspas
+    product1_data['features'] = product1_data['features'].apply(lambda x: x.replace('{', '').replace('}', '').replace('"', ''))
+    product2_data['features'] = product2_data['features'].apply(lambda x: x.replace('{', '').replace('}', '').replace('"', ''))
     similarity_score = calculate_similarity((product1_data["features"] + '-' + product1_data["category"]), (product2_data["features"] + '-'  + product2_data["category"]))
     st.subheader("Similaridade entre os produtos:")
     st.write(f"A similaridade entre os produtos é: {similarity_score:.2%}")
