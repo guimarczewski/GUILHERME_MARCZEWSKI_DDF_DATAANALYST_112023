@@ -7,7 +7,7 @@ models = ["en_core_web_md"]
 # Carregar dados do arquivo CSV hospedado no GitHub
 @st.cache
 def load_data(file_url):
-    data = pd.read_csv(file_url)
+    data = pd.read_csv(file_url, sep=';')
     return data
 
 # Função para calcular a similaridade entre dois textos usando spaCy
