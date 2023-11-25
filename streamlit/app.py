@@ -8,6 +8,7 @@ models = ["en_core_web_sm"]
 @st.cache
 def load_data(file_url):
     data = pd.read_csv(file_url, sep=';')
+    data = data[data['category'] != 'null']
     return data
 
 # Função para calcular a similaridade entre dois textos usando spaCy
