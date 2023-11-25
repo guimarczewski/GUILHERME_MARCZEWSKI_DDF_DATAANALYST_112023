@@ -23,7 +23,7 @@ def main():
     st.title("Comparador de Produtos")
 
     # URL do arquivo CSV no seu repositório do GitHub
-    file_url = "https://raw.githubusercontent.com/seu_usuario/seu_repositorio/seu_caminho/arquivo.csv"
+    file_url = "streamlit/product-search-corpus-final.csv"
 
     # Carregar dados
     data = load_data(file_url)
