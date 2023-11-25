@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
-import spacy
+import spacy_streamlit
+
+models = ["en_core_web_md"]
 
 # Carregar dados do arquivo CSV hospedado no GitHub
 @st.cache
