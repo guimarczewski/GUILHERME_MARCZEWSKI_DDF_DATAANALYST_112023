@@ -49,8 +49,8 @@ def main():
     st.write(product2_data)
 
     # Calcular e exibir a similaridade entre os textos dos produtos sem as chaves e aspas
-    product1_data['features'] = product1_data['features'].replace('{', ' ').replace('}', ' ').replace('"', ' ')
-    product2_data['features'] = product2_data['features'].replace('{', ' ').replace('}', ' ').replace('"', ' ')
+    product1_data['features'] = product1_data['features'].replace('{', '').replace('}', '').replace('"', '')
+    product2_data['features'] = product2_data['features'].replace('{', '').replace('}', '').replace('"', '')
     similarity_score = calculate_similarity((product1_data["features"] + '-' + product1_data["category"]), (product2_data["features"] + '-'  + product2_data["category"]))
     st.subheader("Similaridade entre os produtos:")
     st.write(f"A similaridade entre os produtos é: {similarity_score:.2%}")
