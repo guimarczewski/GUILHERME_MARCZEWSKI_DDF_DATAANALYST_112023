@@ -22,7 +22,7 @@ def calculate_similarity(text1, text2):
 
 # App
 def main():
-    st.title("Similaridade de Produtos")
+    st.title("Products Similarity")
 
     # URL of the CSV file in your GitHub repository
     file_url = "streamlit/product-search-corpus-final.csv"
