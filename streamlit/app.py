@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import spacy
 
-models = ["en_core_web_md"]
+models = ["en_core_web_sm"]
 
 # Carregar dados do arquivo CSV hospedado no GitHub
 @st.cache
@@ -12,7 +12,7 @@ def load_data(file_url):
 
 # Função para calcular a similaridade entre dois textos usando spaCy
 def calculate_similarity(text1, text2):
-    nlp = spacy.load("en_core_web_md")
+    nlp = spacy.load("en_core_web_sm")
     doc1 = nlp(text1)
     doc2 = nlp(text2)
     similarity = doc1.similarity(doc2)
