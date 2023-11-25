@@ -31,11 +31,11 @@ def main():
     data = load_data(file_url)
 
     # Filters to select two products
-    product1_category = st.selectbox("Select the Product category 1", data["category"].unique())
-    product1_title = st.selectbox("Select the Product title 1", data[data["category"] == product1_category]["title"].unique())
+    product1_category = st.selectbox("Select Product category 1", data["category"].unique())
+    product1_title = st.selectbox("Select Product title 1", data[data["category"] == product1_category]["title"].unique())
 
-    product2_category = st.selectbox("Select the Product category 2", data["category"].unique())
-    product2_title = st.selectbox("Select the Product title 2", data[data["category"] == product2_category]["title"].unique())
+    product2_category = st.selectbox("Select Product category 2", data["category"].unique())
+    product2_title = st.selectbox("Select Product title 2", data[data["category"] == product2_category]["title"].unique())
 
     # Get data for selected products
     product1_data = data[(data["category"] == product1_category) & (data["title"] == product1_title)].iloc[0]
