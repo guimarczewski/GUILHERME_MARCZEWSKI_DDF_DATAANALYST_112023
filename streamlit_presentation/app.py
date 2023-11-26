@@ -128,7 +128,7 @@ def app():
         st.success("PowerPoint file updated successfully!")
 
         # Add download button for the ppt file
-        st.markdown(get_ppt_download_link("updated_ppt.pptx", "updated_ppt.pptx"), unsafe_allow_html=True)
+        #st.markdown(get_ppt_download_link("updated_ppt.pptx", "updated_ppt.pptx"), unsafe_allow_html=True)
 
 if __name__ == "__main__":
     app()
