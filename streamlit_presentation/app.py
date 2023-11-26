@@ -131,6 +131,10 @@ def app():
     gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
     company_name = generate_gpt_response(gpt_input, 60)
 
+    # Gerar target audience
+    gpt_input = f"{selected_product} - give me a target audience for this product, following these rules: 'Gender: male, female or both. Age: min-max. give me just this, with no more comments."
+    target_audience = generate_gpt_response(gpt_input, 60)
+
     if ppt_file:
         presentation = Presentation(ppt_file)
         slide_0 = presentation.slides[0]
@@ -138,6 +142,7 @@ def app():
 
         slide_1 = presentation.slides[1]
         replace_text({"{c}": company_name}, slide_1)
+        replace_text({"{i}": target_audience}, slide_1)
 
         # Substituir texto no segundo slide com o valor da coluna 'category'
         slide = presentation.slides[1]
