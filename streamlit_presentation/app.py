@@ -108,10 +108,10 @@ def fix_text_capitalization(text):
     return fixed_text
 
 def app():
-    file_url = st.text_input("Enter the URL of your CSV file")
+    file_url = "streamlit_presentation/product-search-corpus-final.csv"
     ppt_file = st.file_uploader("Upload your PowerPoint file", type=["pptx"])
 
-    if file_url and ppt_file:
+    if ppt_file:
         data = load_data(file_url)
         gpt_input = data.iloc[0]['text']
         company_name = generate_gpt_response(gpt_input, 100)
