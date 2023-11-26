@@ -131,11 +131,11 @@ def app():
 
     if ppt_file:
         presentation = Presentation(ppt_file)
-        slide = presentation.slides[0]
-        replace_text({"{c}": company_name}, slide)
+        slide_0 = presentation.slides[0]
+        replace_text({"{company}": company_name}, slide_0)
 
-        slide = presentation.slides[1]
-        replace_text({"{company}": company_name}, slide)        
+        slide_1 = presentation.slides[1]
+        replace_text({"{c}": company_name}, slide_1)        
 
         # Salvar a apresentação atualizada em BytesIO
         updated_ppt_bytesio = BytesIO()
