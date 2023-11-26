@@ -142,6 +142,8 @@ def app():
 
         slide_1 = presentation.slides[1]
         replace_text({"{c}": company_name}, slide_1)
+
+        slide_1 = presentation.slides[1]
         replace_text({"{i}": target_audience}, slide_1)
 
         # Substituir texto no segundo slide com o valor da coluna 'category'
