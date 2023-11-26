@@ -1,4 +1,4 @@
 streamlit
 pandas
-pptx
+python-pptx~=0.6.21
 base64
