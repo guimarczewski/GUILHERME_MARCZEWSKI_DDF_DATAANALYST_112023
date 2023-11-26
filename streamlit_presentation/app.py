@@ -11,6 +11,8 @@ from io import BytesIO
 def load_data(file_url):
     """functio to load csv file"""
     data = pd.read_csv(file_url, sep=';')
+    # Substituir valores nulos na coluna 'category'
+    data['category'].fillna("No department defined", inplace=True)
     return data
 
 def add_image(slide, image, left, top, width):
@@ -135,7 +137,12 @@ def app():
         replace_text({"{company}": company_name}, slide_0)
 
         slide_1 = presentation.slides[1]
-        replace_text({"{c}": company_name}, slide_1)        
+        replace_text({"{c}": company_name}, slide_1)
+
+        # Substituir texto no segundo slide com o valor da coluna 'category'
+        slide = presentation.slides[1]
+        category_value = filtered_data[filtered_data['title'] == selected_product]['category'].iloc[0]
+        replace_text({"{s}": category_value}, slide)      
 
         # Salvar a apresentação atualizada em BytesIO
         updated_ppt_bytesio = BytesIO()
