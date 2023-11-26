@@ -3,6 +3,8 @@ from pptx import Presentation
 from pptx.util import Inches
 import pandas as pd
 import openai
+from langchain.chat_models import ChatOpenAI
+from langchain.schema import HumanMessage, SystemMessage
 
 @st.cache
 def load_data(file_url):
