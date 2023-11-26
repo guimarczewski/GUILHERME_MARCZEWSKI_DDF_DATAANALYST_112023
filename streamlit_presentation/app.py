@@ -112,7 +112,6 @@ def fix_text_capitalization(text):
     return fixed_text
 
 def app():
-    st.write(st.secrets["openai_credentials"]["API_KEY"])
     file_url = "streamlit_presentation/product-search-corpus-final.csv"
     ppt_file = st.file_uploader("Upload your PowerPoint file", type=["pptx"])
 
