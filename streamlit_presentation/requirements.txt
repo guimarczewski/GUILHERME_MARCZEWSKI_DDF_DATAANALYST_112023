@@ -3,3 +3,4 @@ pandas
 python-pptx~=0.6.21
 openai
 langchain
+io

@@ -5,6 +5,7 @@ import pandas as pd
 import openai
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
+from io import BytesIO
 
 @st.cache
 def load_data(file_url):
@@ -124,11 +125,20 @@ def app():
         slide = presentation.slides[0]
         replace_text({"{company}": company_name}, slide)
 
-        presentation.save("updated_ppt.pptx")
-        st.success("PowerPoint file updated successfully!")
+        # Salvar a apresentação atualizada em BytesIO
+        updated_ppt_bytesio = BytesIO()
+        presentation.save(updated_ppt_bytesio)
+        updated_ppt_bytes = updated_ppt_bytesio.getvalue()
 
-        # Add download button for the ppt file
-        #st.markdown(get_ppt_download_link("updated_ppt.pptx", "updated_ppt.pptx"), unsafe_allow_html=True)
+        # Adicionar um botão de download para o arquivo atualizado
+        st.download_button(
+            label="Download Updated PowerPoint",
+            data=updated_ppt_bytes,
+            file_name="updated_ppt.pptx",
+            key='download_button'
+        )
+
+        st.success("PowerPoint file updated successfully!")
 
 if __name__ == "__main__":
     app()
