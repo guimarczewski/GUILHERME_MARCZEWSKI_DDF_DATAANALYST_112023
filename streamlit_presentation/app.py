@@ -111,15 +111,25 @@ def fix_text_capitalization(text):
     fixed_text = text.lower().capitalize()
     return fixed_text
 
+# Função principal do aplicativo
 def app():
     file_url = "streamlit_presentation/product-search-corpus-final.csv"
     ppt_file = st.file_uploader("Upload your PowerPoint file", type=["pptx"])
 
-    if ppt_file:
-        data = load_data(file_url)
-        gpt_input = data.iloc[0]['text'] + "give me a resumed name for this product with a maximum of 50 caracteres, with no more comments, just the name."
-        company_name = generate_gpt_response(gpt_input, 100)
+    # Carregar dados do arquivo CSV
+    data = load_data(file_url)
 
+    # Exibir prévia do arquivo CSV
+    st.subheader("Preview of CSV Data")
+    category_filter = st.selectbox("Filter by Category", data['category'].unique())
+    filtered_data = data[data['category'] == category_filter]
+    selected_product = st.selectbox("Select a Product", filtered_data['product_name'].unique())
+
+    # Gerar input para GPT
+    gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
+    company_name = generate_gpt_response(gpt_input, 60)
+
+    if ppt_file:
         presentation = Presentation(ppt_file)
         slide = presentation.slides[0]
         replace_text({"{company}": company_name}, slide)
@@ -139,5 +149,6 @@ def app():
 
         st.success("PowerPoint file updated successfully!")
 
+# Executar o aplicativo
 if __name__ == "__main__":
     app()
