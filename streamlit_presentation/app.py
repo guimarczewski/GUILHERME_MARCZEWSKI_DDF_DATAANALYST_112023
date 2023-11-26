@@ -125,14 +125,17 @@ def app():
     filtered_data = data[data['category'] == category_filter]
     selected_product = st.selectbox("Select a Product", filtered_data['title'].unique())
 
-    # Gerar input para GPT
+    # Gerar product name para GPT
     gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
     company_name = generate_gpt_response(gpt_input, 60)
 
     if ppt_file:
         presentation = Presentation(ppt_file)
         slide = presentation.slides[0]
-        replace_text({"{company}": company_name}, slide)
+        replace_text({"{c}": company_name}, slide)
+
+        slide = presentation.slides[1]
+        replace_text({"{company}": company_name}, slide)        
 
         # Salvar a apresentação atualizada em BytesIO
         updated_ppt_bytesio = BytesIO()
