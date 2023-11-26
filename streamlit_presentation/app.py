@@ -118,7 +118,7 @@ def app():
 
     if ppt_file:
         data = load_data(file_url)
-        gpt_input = "data.iloc[0]['text']" + "give me a resumed name for this product with a maximum of 50 caracteres"
+        gpt_input = data.iloc[0]['text'] + "give me a resumed name for this product with a maximum of 50 caracteres, with no more comments, just the name."
         company_name = generate_gpt_response(gpt_input, 100)
 
         presentation = Presentation(ppt_file)
