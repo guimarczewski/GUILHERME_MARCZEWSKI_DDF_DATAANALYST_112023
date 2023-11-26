@@ -2,6 +2,7 @@ import streamlit as st
 from pptx import Presentation
 from pptx.util import Inches
 import pandas as pd
+import openai
 
 @st.cache
 def load_data(file_url):
