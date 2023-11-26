@@ -123,7 +123,7 @@ def app():
     st.subheader("Preview of CSV Data")
     category_filter = st.selectbox("Filter by Category", data['category'].unique())
     filtered_data = data[data['category'] == category_filter]
-    selected_product = st.selectbox("Select a Product", filtered_data['product_name'].unique())
+    selected_product = st.selectbox("Select a Product", filtered_data['title'].unique())
 
     # Gerar input para GPT
     gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
