@@ -201,7 +201,7 @@ def app():
             replace_text({"{s}": category_value}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
             replace_text({"{f}": main_features}, slide_1)
-            add_image(slide_1, image_path, left=Inches(5.5), width=Inches(3), top=Inches(3))
+            add_image(slide_1, image_path, left=Inches(6.5), width=Inches(3), top=Inches(2))
 
             slide_2 = presentation.slides[2]
             replace_text({"{s}": cold_1}, slide_2)
