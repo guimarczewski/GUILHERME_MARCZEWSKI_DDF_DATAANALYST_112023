@@ -140,7 +140,7 @@ def fix_text_capitalization(text):
 # Função principal do aplicativo
 def app():
     file_url = "streamlit_presentation/product-search-corpus-final.csv"
-    ppt_file = st.file_uploader("Upload your PowerPoint file", type=["pptx"])
+    ppt_file = "streamlit_presentation/template.pptx"
 
     # Load data from CSV file
     data = load_data(file_url)
