@@ -57,7 +57,7 @@ def generate_gpt_response(gpt_input, max_tokens):
 def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
     """Function to generate an image from GPT-3.5 and save it as a JPEG file."""
     # Create an instance of the OpenAI class
-    response = openai.Completion.create(
+    response = client.images.generate(
         model="image-alpha-001",  # Specify the image model
         prompt=f"build an image that best represents this review or answer to this review: {gpt_image_prompt}",
         n=1,
