@@ -74,6 +74,10 @@ def plot_image(b64_image_data):
 
     return image
 
+def add_image(slide, image, left, top, width):
+    """function to add an image to the PowerPoint slide and specify its position and width"""
+    slide.shapes.add_picture(image, left=left, top=top, width=width)
+
 def dict_from_string(response):
     """function to parse GPT response with competitors tickers and convert it to a dict"""
     # Find a substring that starts with '{' and ends with '}', across multiple lines
@@ -155,6 +159,10 @@ def app():
 
             strategies_dict = dict_from_string(strategies)
 
+            # Generate image
+            image_prompt = f"product:{selected_product}, category:{category_value} and description: {description} - Generate a image that represents the description"
+            image_product = generate_gpt_image(image_prompt)
+
             presentation = Presentation(ppt_file)
 
             # Generate new PowerPoint file
@@ -171,6 +179,7 @@ def app():
             replace_text({"{s}": category_value}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
             replace_text({"{f}": main_features}, slide_1)
+            add_image(slide_1, image=image_product, left=Inches(5.5), width=Inches(3), top=Inches(3))
 
             slide_2 = presentation.slides[2]
             replace_text({"{s}": cold_1}, slide_2)
