@@ -11,7 +11,7 @@ import re
 import ast
 import requests
 
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["openai_credentials"]["API_KEY"])
 
 @st.cache
 def load_data(file_url):
