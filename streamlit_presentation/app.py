@@ -8,6 +8,7 @@ from langchain.schema import HumanMessage, SystemMessage
 from io import BytesIO
 import re
 import ast
+import requests
 
 @st.cache
 def load_data(file_url):
@@ -53,16 +54,29 @@ def generate_gpt_response(gpt_input, max_tokens):
 
     return response.content.strip()
 
-def generate_gpt_image(gpt_image_prompt):
-    """function to generate a image from GPT-3. Takes input as argument and returns a response"""
+def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
+    """Function to generate an image from GPT-3.5 and save it as a JPEG file."""
     # Create an instance of the OpenAI class
-    response = openai.Image.create(
-        prompt=f"build a image that best represent this review or answer to this review: {gpt_image_prompt}",
+    response = openai.Completion.create(
+        model="image-alpha-001",  # Specify the image model
+        prompt=f"build an image that best represents this review or answer to this review: {gpt_image_prompt}",
         n=1,
         size="512x512",
-        response_format='b64_json'
+        response_format='url'
     )
-    return response['data'][0]['b64_json']
+
+    # Get the image URL from the response
+    image_url = response['choices'][0]['url']
+
+    # Download the image
+    image_data = requests.get(image_url).content
+
+    # Save the image as a JPEG file
+    with open(output_path, 'wb') as f:
+        f.write(image_data)
+
+    return output_path
+
 
 def plot_image(b64_image_data):
     """function to decode the b64 data. Takes input as argument and returns a response"""
@@ -161,7 +175,7 @@ def app():
 
             # Generate image
             image_prompt = f"product:{selected_product}, category:{category_value} and description: {description} - Generate a image that represents the description"
-            image_product = generate_gpt_image(image_prompt)
+            product_name, image_path = generate_gpt_image(gpt_input, output_path="streamlit_presentation/generated_image.jpg")
 
             presentation = Presentation(ppt_file)
 
@@ -179,7 +193,7 @@ def app():
             replace_text({"{s}": category_value}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
             replace_text({"{f}": main_features}, slide_1)
-            add_image(slide_1, image=image_product, left=Inches(5.5), width=Inches(3), top=Inches(3))
+            add_image(slide_1, image_path, left=Inches(5.5), width=Inches(3), top=Inches(3))
 
             slide_2 = presentation.slides[2]
             replace_text({"{s}": cold_1}, slide_2)
