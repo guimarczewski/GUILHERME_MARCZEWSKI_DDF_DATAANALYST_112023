@@ -135,6 +135,22 @@ def app():
     gpt_input = f"{selected_product} - give me a target audience for this product, following these rules: 'Gender: male, female or both. Age: min-max. give me just this, with no more comments."
     target_audience = generate_gpt_response(gpt_input, 60)
 
+    category_value = filtered_data[filtered_data['title'] == selected_product]['category'].iloc[0]
+
+    description = filtered_data[filtered_data['title'] == selected_product]['text'].iloc[0]
+    gpt_input = f"product:{selected_product}, category:{category_value} and description: {description} - Using funnel ads 
+    strategy, create 4 descriptions for online ads: 2 for cold leads called cold_1, cold_2, 1 for remarketing called 
+    remarketing_1 and 1 for customers who abandoned the cart, called abandon_1. I want you to return in that order. 
+    Return output as a Python dictionary with strategic name as key and description as value.Do not return anything else."
+    strategies = generate_gpt_response(gpt_input, 300)
+
+    strategies_dict = dict_from_string(strategies)
+
+    cold_1 = strategies_dict[0]
+    cold_2 = strategies_dict[1]
+    remarketing = strategies_dict[2]
+    abandoned = strategies_dict[3]
+
     if ppt_file:
         presentation = Presentation(ppt_file)
 
@@ -150,9 +166,11 @@ def app():
             replace_text({"{c}": product_name}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
 
-            slide = presentation.slides[1]
-            category_value = filtered_data[filtered_data['title'] == selected_product]['category'].iloc[0]
-            replace_text({"{s}": category_value}, slide)
+            slide_2 = presentation.slides[2]
+            replace_text({"{s}": cold_1}, slide_2)
+            replace_text({"{w}": cold_2}, slide_2)
+            replace_text({"{o}": remarketing}, slide_2)
+            replace_text({"{t}": abandoned}, slide_2)
 
             # Save updated presentation to BytesIO
             updated_ppt_bytesio = BytesIO()
