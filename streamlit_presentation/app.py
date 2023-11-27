@@ -63,7 +63,7 @@ def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
     # Create an instance of the OpenAI class
     response = client.images.generate(
         model="dall-e-2",  # Specify the image model
-        prompt=f"build an image that best represents this review or answer to this review: {gpt_image_prompt}",
+        prompt=gpt_image_prompt,
         n=1,
         size="512x512",
         response_format='url'
