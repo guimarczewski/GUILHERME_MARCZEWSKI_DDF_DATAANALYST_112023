@@ -144,11 +144,6 @@ def app():
     strategies = generate_gpt_response(gpt_input, 300)
 
     strategies_dict = dict_from_string(strategies)
-    
-    cold_1 = strategies_dict[0]
-    cold_2 = strategies_dict[1]
-    remarketing = strategies_dict[2]
-    abandoned = strategies_dict[3]
 
     if ppt_file:
         presentation = Presentation(ppt_file)
@@ -162,6 +157,10 @@ def app():
             replace_text({"{product_name}": product_name}, slide_0)
 
             st.text(strategies_dict)
+            cold_1 = strategies_dict[0]
+            cold_2 = strategies_dict[1]
+            remarketing = strategies_dict[2]
+            abandoned = strategies_dict[3]
             
             slide_1 = presentation.slides[1]
             replace_text({"{c}": product_name}, slide_1)
