@@ -11,8 +11,6 @@ import re
 import ast
 import requests
 
-client = OpenAI(api_key=st.secrets["openai_credentials"]["API_KEY"])
-
 @st.cache
 def load_data(file_url):
     """functio to load csv file"""
@@ -59,9 +57,12 @@ def generate_gpt_response(gpt_input, max_tokens):
 
 def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
     """Function to generate an image from GPT-3.5 and save it as a JPEG file."""
+
+    client = OpenAI(api_key=st.secrets["openai_credentials"]["API_KEY"])
+
     # Create an instance of the OpenAI class
     response = client.images.generate(
-        model="image-alpha-001",  # Specify the image model
+        model="dall-e-2",  # Specify the image model
         prompt=f"build an image that best represents this review or answer to this review: {gpt_image_prompt}",
         n=1,
         size="512x512",
