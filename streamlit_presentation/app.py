@@ -161,6 +161,7 @@ def app():
             product_name = generate_gpt_response(gpt_input, 60)
 
             description = filtered_data[filtered_data['title'] == selected_product]['text'].iloc[0]
+            features = filtered_data[filtered_data['title'] == selected_product]['features'].iloc[0]
 
             # Generate main features
             gpt_input = f"product:{selected_product}, description:{description} - Give me a summary of the main features of this product  with a maximum of 100 characters, with no more comments, just the features."
@@ -178,7 +179,7 @@ def app():
             strategies_dict = dict_from_string(strategies)
 
             # Generate image
-            image_prompt = f"product:{selected_product}, category:{category_value} and description: {description} - Generate a image that represents the description"
+            image_prompt = f"product:{selected_product} and features:{features} - Generate a image that represents the product"
             product_name, image_path = generate_gpt_image(gpt_input, output_path="streamlit_presentation/generated_image.jpg")
 
             presentation = Presentation(ppt_file)
