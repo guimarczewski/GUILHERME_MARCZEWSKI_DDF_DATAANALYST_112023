@@ -32,13 +32,17 @@ Com isso foi criado um Dashboard para análise dos departamentos dos produtos, d
 
 O Data App criado para esse projeto, feito com o Streamlit, verifica a similaridade entre os produtos selecionados. Quanto maior o valor da similaridade, mais similares os produtos são.
 
-O Data App está disponibilizado em https://similarity-ddfr.streamlit.app/ e o código fonte está no path streamlit.
+O App está hospedado tanto na Dadosfera no link https://app-intelligence-treinamentos.dadosfera.ai/pbp-service-streamlit-c14c6038-7d28-48f094bd0f19-ee8b-4021_8501/ quando no streamlit.io no link https://similarity-ddfr.streamlit.app/
+
+
 
 ![Alt text](img/similarity.png)
 
 ## Item Bonus - Sobre GenAI + Data Apps
 
 Para esse projeto foi criado o Data App, também com o uso de streamlit, para gerar automaticamente uma apresentação em Power Point para o produto selecionado.
+
+O App está hospedado tanto na Dadosfera no link https://app-intelligence-treinamentos.dadosfera.ai/pbp-service-streamlit-bfc86fce-0023-42efc92cc443-7e43-4dc5_8501/ quando no streamlit.io no link https://generate-presentation.streamlit.app/
 
 ![Alt text](img/present_1.png)
 
