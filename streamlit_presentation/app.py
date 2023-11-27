@@ -116,56 +116,58 @@ def fix_text_capitalization(text):
 # Função principal do aplicativo
 def app():
     file_url = "streamlit_presentation/product-search-corpus-final.csv"
-    ppt_file = st.file_uploader("Carregue seu arquivo PowerPoint", type=["pptx"])
+    ppt_file = st.file_uploader("Upload your PowerPoint file", type=["pptx"])
 
-    # Carregar dados do arquivo CSV
+    # Load data from CSV file
     data = load_data(file_url)
 
-    # Exibir prévia do arquivo CSV
-    st.subheader("Pré-visualização de dados CSV")
-    category_filter = st.selectbox("Filtrar por categoria", data['category'].unique())
+    # Preview of CSV data
+    st.subheader("Preview of CSV Data")
+    category_filter = st.selectbox("Filter by Category", data['category'].unique())
     filtered_data = data[data['category'] == category_filter]
-    produto_selecionado = st.selectbox("Selecione um produto", dados_filtrados['título'].unique())
+    selected_product = st.selectbox("Select a Product", filtered_data['title'].unique())
 
-    # Gerar nome do produto para GPT
-    gpt_input = f"{selected_product} - forneça um nome resumido para este produto com no máximo 50 caracteres, sem mais comentários, apenas o nome."
+    # Generate product name for GPT
+    gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
     product_name = generate_gpt_response(gpt_input, 60)
 
-    # Gerar público-alvo
-    gpt_input = f"{selected_product} - me dê um público-alvo para este produto, seguindo estas regras: 'Gênero: masculino, feminino ou ambos. Idade: min-max. me dê apenas isso, sem mais comentários."
+    # Generate target audience
+    gpt_input = f"{selected_product} - give me a target audience for this product, following these rules: 'Gender: male, female or both. Age: min-max. give me just this, with no more comments."
     target_audience = generate_gpt_response(gpt_input, 60)
 
-    # Botão para gerar novo PowerPoint
     if ppt_file:
-        generate_new_ppt_button = st.button("Gerar novo PowerPoint")
+        presentation = Presentation(ppt_file)
+
+        # Add button to generate new PowerPoint file
+        generate_new_ppt_button = st.button("Generate New PowerPoint")
+
         if generate_new_ppt_button:
-            # Substitua o texto no primeiro slide com o nome do produto
-            slide_0 = apresentação.slides[0]
+            # Generate new PowerPoint file
+            slide_0 = presentation.slides[0]
             replace_text({"{product_name}": product_name}, slide_0)
 
-            # Substitua o texto no segundo slide com o nome do produto e o público-alvo
-            slide_1 = apresentação.slides[1]
+            slide_1 = presentation.slides[1]
             replace_text({"{c}": product_name}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
 
-            # Substitua o texto no segundo slide com o valor da coluna 'category'
-            slide = apresentação.slides[1]
+            slide = presentation.slides[1]
             category_value = filtered_data[filtered_data['title'] == selected_product]['category'].iloc[0]
             replace_text({"{s}": category_value}, slide)
 
-            # Salvar uma apresentação atualizada em BytesIO
+            # Save updated presentation to BytesIO
             updated_ppt_bytesio = BytesIO()
-            apresentação.save(updated_ppt_bytesio)
+            presentation.save(updated_ppt_bytesio)
             updated_ppt_bytes = updated_ppt_bytesio.getvalue()
 
-            # Adicione um botão de download para o arquivo atualizado
+            # Add download button for updated file
             st.download_button(
                 label="Download Updated PowerPoint",
                 data=updated_ppt_bytes,
                 file_name="updated_ppt.pptx",
-                key='download_button',
+                key='download_button'
             )
-            st.success("Arquivo PowerPoint atualizado com sucesso!")
+            st.success("PowerPoint file updated successfully!")
+
 
 # Executar o aplicativo
 if __name__ == "__main__":
