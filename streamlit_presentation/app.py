@@ -182,7 +182,7 @@ def app():
             gpt_input = f"product:{selected_product}, category:{category_value} and description: {description} - With this information, I want a brief description of the main characteristics for generating an image with dall-e-2. Therefore, it cannot exceed 900 characters. respond with only the main characteristics to include in the prompt with this limit"
             image_prompt_openai = generate_gpt_response(gpt_input, 900)
 
-            image_prompt = f"description:{image_prompt_openai} - Generate a image that represents the product"
+            image_prompt = f"description:{image_prompt_openai} - Generate a image that represents the product, only the product image with no more details or anything else"
             image_path = generate_gpt_image(image_prompt, output_path="streamlit_presentation/generated_image.jpg")
 
             presentation = Presentation(ppt_file)
