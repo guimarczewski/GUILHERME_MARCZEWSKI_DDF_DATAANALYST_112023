@@ -133,6 +133,8 @@ def app():
     gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
     product_name = generate_gpt_response(gpt_input, 60)
 
+    description = filtered_data[filtered_data['title'] == selected_product]['text'].iloc[0]
+
     # Generate main features
     gpt_input = f"product:{selected_product}, description:{description} - Give me a summary of the main features of this product  with a maximum of 100 characters, with no more comments, just the features."
     main_features = generate_gpt_response(gpt_input, 100)
@@ -143,7 +145,6 @@ def app():
 
     category_value = filtered_data[filtered_data['title'] == selected_product]['category'].iloc[0]
 
-    description = filtered_data[filtered_data['title'] == selected_product]['text'].iloc[0]
     gpt_input = f"product:{selected_product}, category:{category_value} and description: {description} - Using funnel ads strategy, create 4 descriptions for online ads: 2 for cold leads called cold_1, cold_2, 1 for remarketing called remarketing_1 and 1 for customers who abandoned the cart, called abandon_1. I want you to return in that order. Return output as a Python dictionary with strategic name as key and description as value.Do not return anything else."
     strategies = generate_gpt_response(gpt_input, 300)
 
