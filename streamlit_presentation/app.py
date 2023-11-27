@@ -123,16 +123,16 @@ def app():
     # Load data from CSV file
     data = load_data(file_url)
 
+    st.subheader("Select the category and product.")
+    category_filter = st.selectbox("Filter by Category", data['category'].unique())
+    filtered_data = data[data['category'] == category_filter]
+    selected_product = st.selectbox("Select a Product", filtered_data['title'].unique())
+
     if ppt_file:
         # Add button to generate new PowerPoint file
         generate_new_ppt_button = st.button("Generate New PowerPoint")
 
         if generate_new_ppt_button:
-            # Preview of CSV data
-            st.subheader("Select the category and product.")
-            category_filter = st.selectbox("Filter by Category", data['category'].unique())
-            filtered_data = data[data['category'] == category_filter]
-            selected_product = st.selectbox("Select a Product", filtered_data['title'].unique())
 
             # Generate product name for GPT
             gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
