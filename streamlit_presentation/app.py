@@ -6,6 +6,7 @@ import openai
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from io import BytesIO
+import re
 
 @st.cache
 def load_data(file_url):
