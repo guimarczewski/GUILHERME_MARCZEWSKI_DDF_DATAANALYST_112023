@@ -11,7 +11,6 @@ Nova arquitetura no curto prazo
 Nova arquitetura no longo prazo
 ![Alt text](img/longo_prazo.png)
 
-Vídeo apresentação
 [Vídeo apresentação](https://www.youtube.com/watch?v=jaK41-sN5VM)
 
 ## Item  2 - Sobre a Dadosfera
