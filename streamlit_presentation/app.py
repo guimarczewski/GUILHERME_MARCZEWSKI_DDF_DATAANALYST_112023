@@ -183,7 +183,7 @@ def app():
             image_prompt_openai = generate_gpt_response(gpt_input, 900)
 
             image_prompt = f"description:{image_prompt_openai} - Generate a image that represents the product"
-            product_name, image_path = generate_gpt_image(image_prompt, output_path="streamlit_presentation/generated_image.jpg")
+            image_path = generate_gpt_image(image_prompt, output_path="streamlit_presentation/generated_image.jpg")
 
             presentation = Presentation(ppt_file)
 
