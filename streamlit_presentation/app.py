@@ -19,10 +19,6 @@ def load_data(file_url):
     data['category'].fillna("No department defined", inplace=True)
     return data
 
-def add_image(slide, image, left, top, width):
-    """function to add an image to the PowerPoint slide and specify its position and width"""
-    slide.shapes.add_picture(image, left=left, top=top, width=width)
-
 def replace_text(replacements, slide):
     """function to replace text on a PowerPoint slide. Takes dict of {match: replacement, ... } and replaces all matches"""
     # Iterate through all shapes in the slide
@@ -99,32 +95,6 @@ def dict_from_string(response):
             # Not a dictionary
             return None
     return dictionary
-
-def convert_to_nested_dict(input_dict, nested_key):
-    """function to convert a dictionary to a nested dictionary. Takes a dictionary and a nested key as arguments and returns a dictionary"""
-    output_dict = {}
-    for key, value in input_dict.items():
-        output_dict[key] = {nested_key: value}
-    return output_dict
-
-def shorten_summary(text):
-    # Split the text into sentences using a regular expression pattern
-    sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
-
-    # Return the first two sentences or less if there are fewer sentences
-    sen = ' '.join(sentences[:2])
-
-    # if the summary is less than 350 characters, return the summary
-    if len(sen) <= 400:
-        return sen
-    else:
-        # if the summary is more than 350 characters, return the first 350 characters and truncate the last word
-        truncated_sen = text[:400].rsplit(' ', 1)[0] + '...'
-        return truncated_sen
-
-def fix_text_capitalization(text):
-    fixed_text = text.lower().capitalize()
-    return fixed_text
 
 # Função principal do aplicativo
 def app():
