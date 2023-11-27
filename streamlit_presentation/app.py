@@ -157,10 +157,10 @@ def app():
             replace_text({"{product_name}": product_name}, slide_0)
 
             st.text(strategies_dict)
-            cold_1 = str(strategies_dict["cold_1"])
-            cold_2 = str(strategies_dict[1])
-            remarketing = str(strategies_dict[2])
-            abandoned = str(strategies_dict[3])
+            cold_1 = str(strategies_dict[0][1])
+            cold_2 = str(strategies_dict[1][1])
+            remarketing = str(strategies_dict[2][1])
+            abandoned = str(strategies_dict[3][1])
             
             slide_1 = presentation.slides[1]
             replace_text({"{c}": product_name}, slide_1)
