@@ -32,6 +32,8 @@ Com isso foi criado um Dashboard para análise dos departamentos dos produtos, d
 
 O Data App criado para esse projeto, feito com o Streamlit, verifica a similaridade entre os produtos selecionados. Quanto maior o valor da similaridade, mais similares os produtos são.
 
+O aplicativo utiliza spaCy, uma biblioteca de processamento de linguagem natural, para calcular a semelhança entre os recursos processados dos produtos selecionados. Isso envolve representar as características de cada produto como um vetor e medir a similaridade entre esses vetores.
+
 O App está hospedado tanto na [Dadosfera](https://app-intelligence-treinamentos.dadosfera.ai/pbp-service-streamlit-c14c6038-7d28-48f094bd0f19-ee8b-4021_8501/) quando no [Streamlit.io](https://similarity-ddfr.streamlit.app/)
 
 
