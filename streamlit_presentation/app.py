@@ -133,6 +133,10 @@ def app():
     gpt_input = f"{selected_product} - give me a resumed name for this product with a maximum of 50 characters, with no more comments, just the name."
     product_name = generate_gpt_response(gpt_input, 60)
 
+    # Generate main features
+    gpt_input = f"product:{selected_product}, description:{description} - Give me a summary of the main features of this product  with a maximum of 100 characters, with no more comments, just the features."
+    main_features = generate_gpt_response(gpt_input, 100)
+
     # Generate target audience
     gpt_input = f"{selected_product} - give me a target audience for this product, following these rules: 'Gender: male, female or both. Age: min-max. give me just this, with no more comments."
     target_audience = generate_gpt_response(gpt_input, 60)
@@ -164,7 +168,9 @@ def app():
             
             slide_1 = presentation.slides[1]
             replace_text({"{c}": product_name}, slide_1)
+            replace_text({"{s}": category_value}, slide_1)
             replace_text({"{i}": target_audience}, slide_1)
+            replace_text({"{f}": main_features}, slide_1)
 
             slide_2 = presentation.slides[2]
             replace_text({"{s}": cold_1}, slide_2)
