@@ -81,17 +81,6 @@ def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
 
     return output_path
 
-
-def plot_image(b64_image_data):
-    """function to decode the b64 data. Takes input as argument and returns a response"""
-    # Decode the base64 data
-    image_data = base64.b64decode(b64_image_data)
-
-    # Create a PIL image object and plot the image
-    image = Image.open(io.BytesIO(image_data))
-
-    return image
-
 def add_image(slide, image, left, top, width):
     """function to add an image to the PowerPoint slide and specify its position and width"""
     slide.shapes.add_picture(image, left=left, top=top, width=width)
