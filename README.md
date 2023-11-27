@@ -2,6 +2,18 @@
 
 ## Item 1 - Sobre Storytelling e Apresentação
 
+Arquitetura original
+![Alt text](img/infra_aws.png)
+
+Nova arquitetura no curto prazo
+![Alt text](img/curto_prazo.png)
+
+Nova arquitetura no longo prazo
+![Alt text](img/longo_prazo.png)
+
+Vídeo apresentação
+[Vídeo apresentação](https://www.youtube.com/watch?v=jaK41-sN5VM)
+
 ## Item  2 - Sobre a Dadosfera
 
 Para importação do arquivo disponibilizado no [Hugging Face](https://huggingface.co/datasets/spacemanidol/product-search-corpus/viewer/default/train?row=0) foi criada uma pipeline utilizando como source o conector REST API, com as seguintes configurações para extrair os campos solicitados:
