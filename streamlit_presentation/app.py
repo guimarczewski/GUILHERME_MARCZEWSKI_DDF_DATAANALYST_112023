@@ -161,7 +161,7 @@ def app():
             slide_0 = presentation.slides[0]
             replace_text({"{product_name}": product_name}, slide_0)
 
-            st.text(strategies_dict)
+            #st.text(strategies_dict)
             cold_1 = str(strategies_dict['cold_1'])
             cold_2 = str(strategies_dict['cold_2'])
             remarketing = str(strategies_dict['remarketing_1'])
