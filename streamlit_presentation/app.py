@@ -167,6 +167,6 @@ def app():
             )
             st.success("Arquivo PowerPoint atualizado com sucesso!")
 
-    # Executar o aplicativo
-    if __name__ == "__main__":
-        app()
+# Executar o aplicativo
+if __name__ == "__main__":
+    app()
