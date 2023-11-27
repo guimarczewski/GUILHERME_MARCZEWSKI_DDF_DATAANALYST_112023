@@ -14,7 +14,7 @@ https://app.dadosfera.ai/en-US/catalog/data-assets/42d36163-e861-4b6a-aa94-d8144
 
 Para criação das features do produtos do dataset, extraídas do campo text, foi utilizada a API da OpenAI.
 
-O processo completo para extração e tratamento dos dados está no Jupyter Notebook spacemanidol_product_search_corpus.ipynb.
+O processo completo para extração e tratamento dos dados está no Jupyter Notebook https://github.com/guimarczewski/GUILHERME_MARCZEWSKI_DDF_DATAANALYST_112023/blob/main/spacemanidol_product_search_corpus.ipynb
 
 ## Item  4 - Sobre SQL e Python
 
