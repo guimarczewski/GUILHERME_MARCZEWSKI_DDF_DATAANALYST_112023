@@ -70,7 +70,7 @@ def generate_gpt_image(gpt_image_prompt, output_path="generated_image.jpg"):
     )
 
     # Get the image URL from the response
-    image_url = response['choices'][0]['url']
+    image_url = response.data[0].url
 
     # Download the image
     image_data = requests.get(image_url).content
